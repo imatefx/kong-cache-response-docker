@@ -11,6 +11,7 @@ RUN git clone https://github.com/wshirey/kong-plugin-response-cache.git kong-plu
 RUN cd kong-plugin-response-cache && luarocks make --verbose
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 8000 8443 8001 8444
