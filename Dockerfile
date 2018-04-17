@@ -14,8 +14,9 @@ RUN apk add --no-cache --virtual .build-deps wget tar ca-certificates \
 	&& rm -rf /tmp/usr \
 	&& cp -R /tmp/etc / \
 	&& rm -rf /tmp/etc \
-	&& git clone https://github.com/wshirey/kong-plugin-response-cache.git kong-plugin-response-cache \
-	&& cd kong-plugin-response-cache && luarocks make --verbose \
+	&& wget -O kong-plugin-response-cache.zip "https://github.com/wshirey/kong-plugin-response-cache/archive/master.zip" \
+	&& unzip kong-plugin-response-cache.zip /tmp/kong-plugin-response-cache/ \
+	&& cd /tmp/kong-plugin-response-cache && luarocks make --verbose \
 	&& apk del .build-deps
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
